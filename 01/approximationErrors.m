@@ -1,4 +1,5 @@
 function approxErrors = approximationErrors()
+%approxErrors = approximationErrors() returns a matrix containing all the approximation errors for the three differen methods, using each time a smaller dt
 %the first row will contain the error for the Euler approximation
 %the second row will contain the error for the Heun approximation
 %the third row will contain the error for the Runge-Kutta approximation
