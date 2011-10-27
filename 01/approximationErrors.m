@@ -6,7 +6,7 @@ function approxErrors = approximationErrors()
 %each column is a different (in this case smaller) dt
 	
 	y0 = 1;
-	tEnd = 10;
+	tEnd = 5;
 
 	approxErrors = [];
 
