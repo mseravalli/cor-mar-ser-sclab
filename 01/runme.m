@@ -1,3 +1,5 @@
+%display results in a tabular form
+
 appErr = approximationErrors;
 relErr = relativeErrors(approximationErrors);
 errApp = errorApproximation;
