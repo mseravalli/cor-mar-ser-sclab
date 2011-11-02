@@ -13,7 +13,5 @@ function p = b2(y0, dt, tEnd, fPrime)
         p = [p tmp];
         
     end
-    
-    plot([0:dt:tEnd], p, 'g');
 
 end

@@ -11,7 +11,5 @@ function p = b1(y0, dt, tEnd, fPrime )
         p = [p tmp];
         
     end
-    
-    plot([0:dt:tEnd], p, 'r');
 
 end

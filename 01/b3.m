@@ -18,7 +18,5 @@ function p = b3(y0, dt, tEnd, fPrime)
         p = [p tmp];
         
     end
-    
-    plot([0:dt:tEnd], p, 'black');
 
 end
