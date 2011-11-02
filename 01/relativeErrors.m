@@ -14,7 +14,7 @@ function relErrors = relativeError(approximationErrors)
 
 		end
 
-		relErrors = [relErrors; sum(err)/(j-1)];
+		relErrors = [relErrors; err]; % sum(err)/(j-1)];
 
 	end
 
