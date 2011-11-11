@@ -3,7 +3,7 @@
 y0 = 20;
 tEnd = 5;
 
-minPrec = 0;
+minPrec = 1;
 maxPrec = 5;
 
 pExact = exactSolution(0.1, tEnd);
@@ -16,7 +16,7 @@ xlabel('t');
 ylabel('p(t)');
 plot([0:0.1:tEnd], pExact, 'r');
 xlim([0 5]);
-ylim([9 21]);
+ylim([0 20]);
 
 %Explicit Heun
 hFig = figure;
@@ -26,7 +26,7 @@ xlabel('t');
 ylabel('p(t)');
 plot([0:0.1:tEnd], pExact, 'r');
 xlim([0 5]);
-ylim([9 21]);
+ylim([0 20]);
 
 %implicit Euler
 ieFig = figure;
@@ -36,6 +36,17 @@ xlabel('t');
 ylabel('p(t)');
 plot([0:0.1:tEnd], pExact, 'r');
 xlim([0 5]);
+ylim([0 20]);
+
+%implicit Adams-Moulton
+iamFig = figure;
+hold on;
+title('Implicit Adams-Moulton method');
+xlabel('t'); 
+ylabel('p(t)');
+plot([0:0.1:tEnd], pExact, 'r');
+xlim([0 5]);
+ylim([0 20]);
 
 
 legendStr = ['Exact result'];
@@ -56,16 +67,22 @@ for j = minPrec : maxPrec
 	set(0,'CurrentFigure', ieFig);
 	plot([0:dt:tEnd], tmp(4,:), 'Color', [0 1-(j/(maxPrec + 1)) j/(maxPrec + 1)]);
 
+	set(0,'CurrentFigure', iamFig);
+	plot([0:dt:tEnd], tmp(5,:), 'Color', [0 1-(j/(maxPrec + 1)) j/(maxPrec + 1)]);
+
 end
 
 set(0,'CurrentFigure', eeFig);
-legend(legendStr, 'Location','Best');
+legend(legendStr, 'Location', 'SouthEast');
 
 set(0,'CurrentFigure',hFig);
-legend(legendStr, 'Location','Best');
+legend(legendStr, 'Location', 'SouthEast');
 
 set(0,'CurrentFigure', ieFig);
-legend(legendStr, 'Location','Best');
+legend(legendStr, 'Location', 'SouthEast');
+
+set(0,'CurrentFigure', iamFig);
+legend(legendStr, 'Location', 'SouthEast');
 
 
 clear i j dt tmp maxPrec;

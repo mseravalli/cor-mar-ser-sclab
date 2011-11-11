@@ -1,5 +1,5 @@
 function p = IEuler(y0, dt, tEnd)
-% p = b1(y0, dt, tEnd, fPrime) calculates the approximation for the given function using the Euler method.
+% p = b1(y0, dt, tEnd, fPrime) calculates the approximation for the given function using the implicit Euler method.
 % Returns p, the vector of values for each dt.
 
 	p = [y0];
