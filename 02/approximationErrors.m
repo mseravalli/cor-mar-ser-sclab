@@ -21,6 +21,8 @@ function approxErrors = approximationErrors(minPrec, maxPrec)
 		tmp = [tmp c(dt, approx(3,:), approx(1,:))];
 		tmp = [tmp c(dt, approx(4,:), approx(1,:))];
 		tmp = [tmp c(dt, approx(5,:), approx(1,:))];
+		tmp = [tmp c(dt, approx(6,:), approx(1,:))];
+		tmp = [tmp c(dt, approx(7,:), approx(1,:))];
 	
 		approxErrors = [approxErrors ; tmp];
 

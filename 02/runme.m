@@ -48,6 +48,25 @@ plot([0:0.1:tEnd], pExact, 'r');
 xlim([0 5]);
 ylim([0 20]);
 
+%implicit Adams-Moulton linearisation 1
+iaml1Fig = figure;
+hold on;
+title('Implicit Adams-Moulton method linearised 1');
+xlabel('t'); 
+ylabel('p(t)');
+plot([0:0.1:tEnd], pExact, 'r');
+xlim([0 5]);
+ylim([0 20]);
+
+%implicit Adams-Moulton linearisation 2
+iaml2Fig = figure;
+hold on;
+title('Implicit Adams-Moulton method linearised 2');
+xlabel('t'); 
+ylabel('p(t)');
+plot([0:0.1:tEnd], pExact, 'r');
+xlim([0 5]);
+%ylim([0 20]);
 
 legendStr = ['Exact result'];
 	
@@ -69,7 +88,12 @@ for j = minPrec : maxPrec
 
 	set(0,'CurrentFigure', iamFig);
 	plot([0:dt:tEnd], tmp(5,:), 'Color', [0 1-(j/(maxPrec + 1)) j/(maxPrec + 1)]);
+	
+	set(0,'CurrentFigure', iaml1Fig);
+	plot([0:dt:tEnd], tmp(6	,:), 'Color', [0 1-(j/(maxPrec + 1)) j/(maxPrec + 1)]);
 
+	set(0,'CurrentFigure', iaml2Fig);
+	plot([0:dt:tEnd], tmp(7	,:), 'Color', [0 1-(j/(maxPrec + 1)) j/(maxPrec + 1)]);
 end
 
 set(0,'CurrentFigure', eeFig);
@@ -84,6 +108,11 @@ legend(legendStr, 'Location', 'SouthEast');
 set(0,'CurrentFigure', iamFig);
 legend(legendStr, 'Location', 'SouthEast');
 
+set(0,'CurrentFigure', iaml1Fig);
+legend(legendStr, 'Location', 'SouthEast');
+
+set(0,'CurrentFigure', iaml2Fig);
+legend(legendStr, 'Location', 'SouthEast');
 
 clear i j dt tmp maxPrec;
 

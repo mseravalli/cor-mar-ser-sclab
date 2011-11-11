@@ -9,6 +9,8 @@ function approx = approxMethods(y0, dt, tEnd)
     approx = [approx; EHeun(y0, dt, tEnd, fPrime)]; 
 	
 	approx = [approx; IEuler(y0, dt, tEnd)]; 
-	approx = [approx; adamsMoulton(y0, dt, tEnd)]; 
+	approx = [approx; adamsMoulton(y0, dt, tEnd)];
+	approx = [approx; adamsMoultonLinear1(y0, dt, tEnd)];
+	approx = [approx; adamsMoultonLinear2(y0, dt, tEnd)];
 
 end
