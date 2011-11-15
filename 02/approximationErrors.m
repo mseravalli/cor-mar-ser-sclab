@@ -5,7 +5,7 @@ function approxErrors = approximationErrors(minPrec, maxPrec)
 %the third row will contain the error for the Runge-Kutta approximation
 %each column is a different (in this case smaller) dt
 	
-	y0 = 1;
+	y0 = 20;
 	tEnd = 5;
 
 	approxErrors = [];

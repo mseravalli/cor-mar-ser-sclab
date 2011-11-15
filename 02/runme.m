@@ -4,7 +4,7 @@ y0 = 20;
 tEnd = 5;
 
 minPrec = 1;
-maxPrec = 5;
+maxPrec = 12;
 
 pExact = exactSolution(0.1, tEnd);
 

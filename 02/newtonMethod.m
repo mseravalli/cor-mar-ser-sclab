@@ -11,6 +11,11 @@ function r = newtonMethod(x, f, fPrime)
 		x = x - feval(f, x, x0 ) ./ feval(fPrime, x);
 
 	end
+
+	if(i >= 19)
+		disp('maybe solution was not reached');
+		disp(feval(f, x, x0 ));
+	end
 	
 	r = x;
 
