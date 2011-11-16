@@ -1,3 +1,25 @@
+%display results in a tabular form
+
+appErr = approximationErrors(1,5);
+relErr = relativeErrors(appErr);
+titel = [	'Explicit Euler  '; 
+			'Explicit Heun   '; 
+			'Implicit Euler  ';
+			'Adams-Moutlon   ';
+			'Adams-Moutlon L1';
+			'Adams-Moutlon L2'];
+
+for i = 1 :6 
+
+	disp(titel(i,:));
+	result = [1/2 1/4 1/8 1/16 1/32];
+	result = [result ; appErr(i,:) ];	
+	result = [result ; [0/0 relErr(i,:)] ];	
+
+	disp(result);
+
+end
+
 
 %plotting
 y0 = 20;
