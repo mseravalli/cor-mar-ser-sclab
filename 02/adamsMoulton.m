@@ -9,13 +9,13 @@ function p = adamsMoulton(y0, dt, tEnd, f, fPrime)
 	disp('AM');
 
     for t = dt : dt : tEnd
-       	if(((-20+70*dt-14*dt^2+70*dt)/20)^2-4*(-7*dt/10)*((-7*dt^3)/20+(7*dt^2)/2) < 0)
-	    y0 = inf;
-disp('inf');
-		disp(dt);
-	else
-	    y0 = newtonMethod(y0, f, fPrime); 
-	end
+       	if((1-(7.*dt)/2)^2 + 7.*dt/10 .* (2.*y0 + dt.*(7 .*(  (1 - (y0/10)) .* y0 )))  < 0)
+	    	y0 = inf;
+			disp('inf');
+			disp(dt);
+		else
+		    y0 = newtonMethod(y0, f, fPrime); 
+		end
 	    p = [p y0]; 
         
     end
