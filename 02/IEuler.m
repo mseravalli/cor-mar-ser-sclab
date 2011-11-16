@@ -7,11 +7,18 @@ function p = IEuler(y0, dt, tEnd, f, fPrime)
 %	fPrime = @(x)(1 - dt .* 7 .* (1 -x/5));
 
 	disp('Implicit Euler');
-    
+	
+
     for t = dt : dt : tEnd
-       
-		y0 = newtonMethod(y0, f, fPrime); 
-	    p = [p y0]; 
+    	%if(y0 >= -5./14.*((1-7.*dt)^2./dt))
+	if((1-7*dt)^2 + 4*7*dt*y0/10 < 0)
+	     y0=inf;
+		disp('inf');
+		disp(dt);
+	else
+	     y0 = newtonMethod(y0, f, fPrime); 
+	end
+	p = [p y0]; 
         
     end
 
