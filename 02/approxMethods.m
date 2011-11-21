@@ -1,4 +1,5 @@
 function approx = approxMethods(y0, dt, tEnd)
+% returns a matrix with the values for all approximations
 
     approx = [];
 
