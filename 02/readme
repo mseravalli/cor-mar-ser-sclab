@@ -1,0 +1,7 @@
+Cordero - Maric - Seravalli
+
+Assignment 2
+
+The runme.m file allows the user to run and visualize the results and plots.
+This procedure outputs the results (the errors at different dt steps) in the form of the table presented on the last page of the assigment; It also plots the values of the function using the three differents approximation methods. 
+
