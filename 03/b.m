@@ -12,14 +12,22 @@ for i = 1 : Nx
     
 	for j = 1 : Ny
         
-        if j>1
-        mat((i-1)*Ny+j, (i-1)*Ny+j-1) = 1./(hy.^2);
+        if i>1
+           mat((i-1)*Ny+j, (i-2)*Ny+j) = 1./(hy.^2);
+        end
+
+        if j-1>=1
+           mat((i-1)*Ny+j, (i-1)*Ny+j-1) = 1./(hx.^2);
         end
 
         mat((i-1)*Ny+j, (i-1)*Ny+j) = -(2./(hx^2)+2./(hy^2));
 
-        if j<Ny
-        mat((i-1)*Ny+j, (i-1)*Ny+j+1) = 1./(hy.^2);
+        if j+1<=Ny
+           mat((i-1)*Ny+j, (i-1)*Ny+j+1) = 1./(hx.^2);
+        end
+
+        if i<Nx
+            mat((i-1)*Ny+j, i*Ny+j) = 1./(hy.^2);
         end
 
     end 
