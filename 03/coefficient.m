@@ -1,4 +1,6 @@
 function coef = coefficient(i,j, Nx, Ny)
+% coef = coefficient(i,j, Nx, Ny) calculates the coefficient at the position (i,j) in system matrix
+
     hx = 1/(Nx+1);
     hy = 1/(Ny+1);
     if i==j

@@ -1,5 +1,5 @@
-function mat = b(Nx, Ny)
-%mat = b(Nx, Ny) constructs coeficients matrix
+function mat = systemMatrix(Nx, Ny)
+%mat = systemMatrix(Nx, Ny) constructs system matrix
 
 hx=1/(Nx+1);
 hy=1/	(Ny+1);
