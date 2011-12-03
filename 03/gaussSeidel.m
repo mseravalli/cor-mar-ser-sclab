@@ -14,14 +14,31 @@ function mat = gaussSeidel(b, Nx, Ny)
             term1 = 0;  
             term2 = 0;
 
-            for l = k+1 : length(Ts)
-                term1 = term1 + coefficient(k,l,Nx,Ny).*Ts(l);                
+            if(k-Ny > 0)
+                term1 = term1 + coefficient(k,k-Ny,Nx,Ny).*Ts(k-Ny);
+            end
+            if(k-1 > 0)
+                term1 = term1 + coefficient(k,k-1,Nx,Ny).*Ts(k-1);
+            end
+            if(k+1 <= Ny.*Nx)
+                term2 = term2 + coefficient(k,k+1,Nx,Ny).*Ts(k+1);
+            end
+            if(k+Ny <= Ny.*Nx)
+                term2 = term2 + coefficient(k,k+Ny,Nx,Ny).*Ts(k+Ny);
             end
 
-            for l = 1 : k-1
-                term2 = term2 + coefficient(k,l,Nx,Ny).*Ts(l);
-            end
-            Ts(k)=1./coefficient(k,k,Nx,Ny).*(b(k)-term1-term2);
+            Ts(k)=1./coefficient(k,k,Nx,Ny).*(b(k)-term2-term1);
+
+%            for l = k+1 : length(Ts)
+%                term1 = term1 + coefficient(k,l,Nx,Ny).*Ts(l);                
+%            end
+
+%            for l = 1 : k-1
+%                term2 = term2 + coefficient(k,l,Nx,Ny).*Ts(l);
+%            end
+
+%            Ts(k)=1./coefficient(k,k,Nx,Ny).*(b(k)-term1-term2);
+
         end    
     end
 

@@ -7,9 +7,25 @@ function res = residual(Ts, b, Nx, Ny)
 
     for k = 1 : length(Ts)
         insum = 0;
-        for m = 1:length(Ts)
-            insum = insum + coefficient(k,m,Nx,Ny).*Ts(m);
+
+        if(k-Ny > 0)
+            insum = insum + coefficient(k,k-Ny,Nx,Ny).*Ts(k-Ny);
         end
+        if(k-1 > 0)
+            insum = insum + coefficient(k,k-1,Nx,Ny).*Ts(k-1);
+        end
+        insum = insum + coefficient(k,k,Nx,Ny).*Ts(k);
+        if(k+1 <= Ny.*Nx)
+            insum = insum + coefficient(k,k+1,Nx,Ny).*Ts(k+1);
+        end
+        if(k+Ny <= Ny.*Nx)
+            insum = insum + coefficient(k,k+Ny,Nx,Ny).*Ts(k+Ny);
+        end
+        
+%       for m = 1:length(Ts)
+%           insum = insum + coefficient(k,m,Nx,Ny).*Ts(m);
+%       end
+
         outsum = outsum+(b(k) - insum).^2;
     end
 
