@@ -1,11 +1,6 @@
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
-<<<<<<< HEAD
 % Nx = 7;
 % Ny = 7;
-=======
-Nx = 7;
-Ny = 7;
->>>>>>> 383760dac0c337577d1cf66ffccdc88859abc2c2
 
 display = false;
 
@@ -48,11 +43,8 @@ errors = [ errors gsError(dirSolFull, rhs)];
 errors = [ errors gsError(dirSolSparse, rhs)];
 errors = [ errors gsError(gaussSeidelOur, rhs)];
 
-<<<<<<< HEAD
 errors
 
-=======
->>>>>>> 383760dac0c337577d1cf66ffccdc88859abc2c2
 times
 
 save('errors.txt', 'errors', '-ascii', '-append');
