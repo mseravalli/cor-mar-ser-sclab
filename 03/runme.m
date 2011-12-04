@@ -1,6 +1,15 @@
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
+exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
+
 % Nx = 7;
 % Ny = 7;
+
+%X=[];
+%for i = 1 : Nx+1
+%X=[X i/(Nx+1)];
+%end
+%X = [0 X];
+%Y = X;
 
 display = false;
 
@@ -39,9 +48,9 @@ gaussSeidelOur = gaussSeidel(b, Nx, Ny);
 times = [times toc];
 
 disp('errors')
-errors = [ errors gsError(dirSolFull, rhs)];
-errors = [ errors gsError(dirSolSparse, rhs)];
-errors = [ errors gsError(gaussSeidelOur, rhs)];
+errors = [ errors gsError(dirSolFull, exact)];
+errors = [ errors gsError(dirSolSparse, exact)];
+errors = [ errors gsError(gaussSeidelOur, exact)];
 
 errors
 
@@ -54,12 +63,12 @@ if display
 
     clf;
 
-    subplot(2,3,1), surf(dirSolFull)
-    subplot(2,3,2), surf(dirSolSparse)
-    subplot(2,3,3), surf(gaussSeidelOur)
+    subplot(2,3,1), surf(X,Y,dirSolFull)
+    subplot(2,3,2), surf(X,Y,dirSolSparse)
+    subplot(2,3,3), surf(X,Y,gaussSeidelOur)
 
-    subplot(2,3,4), contour(dirSolFull)
-    subplot(2,3,5), contour(dirSolSparse)
-    subplot(2,3,6), contour(gaussSeidelOur)
+    subplot(2,3,4), contour(X,Y,dirSolFull)
+    subplot(2,3,5), contour(X,Y,dirSolSparse)
+    subplot(2,3,6), contour(X,Y,gaussSeidelOur)
 
 end
