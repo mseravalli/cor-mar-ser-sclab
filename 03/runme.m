@@ -1,17 +1,20 @@
+% example of usage 
+% Nx=15; Ny=15; display = true; runme
+
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
 exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
 
 % Nx = 7;
 % Ny = 7;
 
-%X=[];
-%for i = 1 : Nx+1
-%X=[X i/(Nx+1)];
-%end
-%X = [0 X];
-%Y = X;
+X=[];
+for i = 1 : Nx+1
+    X=[X i/(Nx+1)];
+end
+X = [0 X];
+Y = X;
 
-display = false;
+%display = false;
 
 times = [];
 
@@ -64,8 +67,13 @@ if display
     clf;
 
     subplot(2,3,1), surf(X,Y,dirSolFull)
+    title('Direct Solver');
+
     subplot(2,3,2), surf(X,Y,dirSolSparse)
+    title('Direct Solver Sparse');
+
     subplot(2,3,3), surf(X,Y,gaussSeidelOur)
+    title('Gauss-Seidel');
 
     subplot(2,3,4), contour(X,Y,dirSolFull)
     subplot(2,3,5), contour(X,Y,dirSolSparse)

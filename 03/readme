@@ -1,0 +1,15 @@
+Cordero - Maric - Seravalli
+
+For displaying the matrix A simply remove the semicolum in the runme file.
+
+To run the simulation with Nx = Ny = 15
+
+>> Nx=15; Ny=15; display = true; runme
+
+this operation should be performed for each Nx, Ny.
+
+The results of the computations will be the errors, the running time, the display of the surface and the countour plot.
+
+The Gauss-Seidel results to have a O(dt^2) accurancy.
+
+

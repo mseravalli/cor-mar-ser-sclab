@@ -50,5 +50,6 @@ function mat = gaussSeidel(b, Nx, Ny)
 
     mat = [ mat ; zeros(1,Nx + 2)];
 
+    numElements = numel(Ts)+numel(b)+numel(mat)
 
 end

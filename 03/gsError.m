@@ -10,7 +10,7 @@ function err = gsError(gs, exact)
         inSum = 0;
         
         for j = 1 : Ny
-            inSum = inSum + (gs(i, j) - feval(exact, i, j)).^2;
+            inSum = inSum + (gs(i, j) - feval(exact, (i-1)./(Nx-1), (j-1)./(Ny-1))).^2;
         end
 
         outSum = outSum + inSum;
