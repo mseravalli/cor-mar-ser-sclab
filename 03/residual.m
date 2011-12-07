@@ -22,10 +22,6 @@ function res = residual(Ts, b, Nx, Ny)
             insum = insum + coefficient(k,k+Ny,Nx,Ny).*Ts(k+Ny);
         end
         
-%       for m = 1:length(Ts)
-%           insum = insum + coefficient(k,m,Nx,Ny).*Ts(m);
-%       end
-
         outsum = outsum+(b(k) - insum).^2;
     end
 
