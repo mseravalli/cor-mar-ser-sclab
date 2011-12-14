@@ -1,4 +1,4 @@
-tEnd=4/8;
+testEnd=4/8;
 
 maxValues = [];
 
@@ -15,7 +15,7 @@ display = false;
     A=systemMatrix(Nx, Ny);
     T0=ones(Nx*Ny,1);
     
-        dt=1/128;
+        dt=1/64;
 
         eEulerSol = IEuler(T0, dt, tEnd, Nx, Ny);
         

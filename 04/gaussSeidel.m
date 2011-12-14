@@ -4,22 +4,20 @@ function Ts = gaussSeidel(T0, Nx, Ny, dt)
     %Ts = zeros(Nx.*Ny, 1);
     Ts = T0;
 
-    b = (Ts-T0)./dt;
+    b = (-T0)./dt;
     hx = 1./(1+Nx);
     hy = 1./(1+Ny);
  
     external = 1/hx^2; 
     internal = 1/hy^2; 
-    central = -2/hx^2 - 2/hy^2;
+    central = -2/hx^2 - 2/hy^2-1/dt;
   
     residual = 1;
 
-    while residual > 10^(-2)
+    while residual > 10^(-4)
 
         for k =1 : length(Ts)
             
-            insum = 0;
-
             term1 = 0;  
             term2 = 0;
 
@@ -39,8 +37,6 @@ function Ts = gaussSeidel(T0, Nx, Ny, dt)
             Ts(k)=1./central.*(b(k)-term2-term1);
             
         end   
-        
-        b=(Ts-T0)./dt;
         
         outsum = 0;
 
