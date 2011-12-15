@@ -6,6 +6,7 @@ tEnd=4/8;
 
 maxValues = [];
 
+%loop for the dimensions of the grid
 for k = 2 : 5
 
     Nx = (2.^k) - 1;
@@ -19,9 +20,10 @@ for k = 2 : 5
     
     dt=1/64;
 
-    eEulerSol = IEuler(T0, dt, tEnd, Nx, Ny);
-        
-    if(abs(max(max(eEulerSol(:,:,4)))) > 1 || isnan(max(max(eEulerSol(:,:,4)))))       
+    iEulerSol = IEuler(T0, dt, tEnd, Nx, Ny);
+       
+    %checks stability of the solution 
+    if(abs(max(max(iEulerSol(:,:,4)))) > 1 || isnan(max(max(iEulerSol(:,:,4)))))       
         maxValues(k-1, 1) = false;
     else
         maxValues(k-1, 1) = true;
@@ -29,16 +31,16 @@ for k = 2 : 5
 
     dimDescr = strcat('dimension = ', num2str(Nx), '^2');
         
-    subplot(4,4,1 + 4*(k-2)), surf(X,Y,eEulerSol(:,:,1));
+    subplot(4,4,1 + 4*(k-2)), surf(X,Y,iEulerSol(:,:,1));
     title(strcat(dimDescr, ' - time 1/8'));
 
-    subplot(4,4,2 + 4*(k-2)), surf(X,Y,eEulerSol(:,:,2));
+    subplot(4,4,2 + 4*(k-2)), surf(X,Y,iEulerSol(:,:,2));
     title(strcat(dimDescr, ' - time 2/8'));
 
-    subplot(4,4,3 + 4*(k-2)), surf(X,Y,eEulerSol(:,:,3));
+    subplot(4,4,3 + 4*(k-2)), surf(X,Y,iEulerSol(:,:,3));
     title(strcat(dimDescr, ' - time 3/8'));
 
-    subplot(4,4,4 + 4*(k-2)), surf(X,Y,eEulerSol(:,:,4));
+    subplot(4,4,4 + 4*(k-2)), surf(X,Y,iEulerSol(:,:,4));
     title(strcat(dimDescr, ' - time 4/8'));
 end        
         

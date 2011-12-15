@@ -7,6 +7,7 @@ maxValues = [];
 
 display = false;
 
+%loop for the dimensions of the grid
 for k = 2 : 5
 
     Nx = (2.^k) - 1;
@@ -17,13 +18,15 @@ for k = 2 : 5
 
     A=systemMatrix(Nx, Ny);
     T0=ones(Nx*Ny,1);
-    
+   
+    %loop for the different step sizes 
     for l = 6 : 12
         
         dt=2.^(-l);
 
         eEulerSol = EEuler(T0, dt, tEnd, A, Nx, Ny);
-        
+       
+        %checks stability of the solution 
         if(abs(max(max(eEulerSol(:,:,4)))) > 1 || isnan(max(max(eEulerSol(:,:,4)))))        
             maxValues(k-1, l-5) = false;
         else
