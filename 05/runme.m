@@ -1,5 +1,7 @@
 % example of usage 
 
+format long;
+
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
 exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
 
@@ -19,7 +21,7 @@ for n = 2 : 8
     end
 
     %solved using GaussSeidel
-    [mat, storage, iterations, time] = gaussSeidel(b, Nx, Ny);
+    [mat, storage, iterations, time] = SOR(b, Nx, Ny);
 
     factor = NaN;
 
@@ -29,8 +31,8 @@ for n = 2 : 8
 
     resultTable = [resultTable  [iterations; factor; time; storage]];
 
-    %disp('errors')
-    %disp(gsError(gaussSeidelOur, exact))
+    disp('errors')
+    disp(gsError(mat, exact))
 
 end
 
@@ -49,9 +51,9 @@ if display
 
     clf;
 
-    subplot(1,2,1), surf(X,Y,gaussSeidelOur)
+    subplot(1,2,1), surf(X,Y,mat)
     title('Gauss-Seidel');
 
-    subplot(1,2,2), contour(X,Y,gaussSeidelOur)
+    subplot(1,2,2), contour(X,Y,mat)
 
 end
