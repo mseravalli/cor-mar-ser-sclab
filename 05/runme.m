@@ -1,20 +1,7 @@
 % example of usage 
-% Nx=15; Ny=15; display = true; runme
 
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
 exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
-
-% Nx = 7;
-% Ny = 7;
-
-X=[];
-for i = 1 : Nx+1
-    X=[X i/(Nx+1)];
-end
-X = [0 X];
-Y = X;
-
-display = false;
 
 resultTable = [];
 
@@ -49,7 +36,16 @@ end
 
 disp(resultTable);
 
+display = false;
+
 if display 
+
+    X=[];
+    for i = 1 : Nx+1
+        X=[X i/(Nx+1)];
+    end
+    X = [0 X];
+    Y = X;
 
     clf;
 
