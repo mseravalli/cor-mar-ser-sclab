@@ -38,7 +38,7 @@ end
 
 disp(resultTable);
 
-display = false;
+display = true;
 
 if display 
 

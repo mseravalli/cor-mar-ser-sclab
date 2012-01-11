@@ -7,11 +7,11 @@ function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
 
     omega = 2/(1+sin(pi*hx));
  
-    external = omega/hx^2; 
-    internal = omega/hy^2; 
-    central = (1-omega) * (-2/hx^2 - 2/hy^2);
+    external = 1/hx^2; 
+    internal = 1/hy^2; 
+    central = (-2/hx^2 - 2/hy^2);
 
-    b = omega .* b;
+   % b = omega .* b;
 
     iterations = 0;
   
@@ -47,7 +47,7 @@ function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
                 term2 = term2 + external.*Ts(k+Ny);
             end
 
-            Ts(k) = 1./central.*(b(k)-term2-term1);
+            Ts(k) = (1-omega).*Ts(k) + omega./central.*(b(k)-term2-term1);
 
             
             if(k > 2)
