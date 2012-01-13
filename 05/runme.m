@@ -5,7 +5,8 @@ format long;
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
 exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
 
-resultTable = [];
+resultTableGS = [];
+resultTableSOR = [];
 
 for n = 2 : 5
 
@@ -20,20 +21,27 @@ for n = 2 : 5
         end
     end
 
-    %solved using GaussSeidel
-    [mat, storage, iterations, time] = SOR(b, Nx, Ny);
+    %solved using Gauss - Seidel
+    [matGS, storageGS, iterationsGS, timeGS] = gaussSeidel(b, Nx, Ny);
 
-    factor = NaN;
+    %solved using SOR
+    [matSOR, storageSOR, iterationsSOR, timeSOR] = SOR(b, Nx, Ny);
+
+    factorGS = NaN;
+    factorSOR = NaN;
 
     if(n > 2)
-        factor = iterations / resultTable(1,end);
+        factorGS = iterationsGS / resultTableGS(1,end);
+        factorSOR = iterationsSOR / resultTableSOR(1,end);
     end
 
-    resultTable = [resultTable  [iterations; factor; time; storage]];
+    resultTableGS = [resultTableGS  [iterationsGS; factorGS; timeGS; storageGS]];
+    resultTableSOR = [resultTableSOR  [iterationsSOR; factorSOR; timeSOR; storageSOR]];
 
 end
 
-disp(resultTable);
+disp(resultTableGS)
+disp(resultTableSOR)
 
 display = false;
 
