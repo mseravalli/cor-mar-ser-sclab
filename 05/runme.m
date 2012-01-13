@@ -31,9 +31,6 @@ for n = 2 : 5
 
     resultTable = [resultTable  [iterations; factor; time; storage]];
 
-    disp('errors')
-    disp(gsError(mat, exact))
-
 end
 
 disp(resultTable);
@@ -59,36 +56,32 @@ if display
 end
 
 %ploting errors
-
-Nx=255;
-Ny=255;
+Nx = 255;
+Ny = 255;
 
 X=[];
-    for i = 1 : Nx+1
-        X=[X i/(Nx+1)];
-    end
-    X = [0 X];
-    Y = X;
+for i = 1 : Nx+1
+    X=[X i/(Nx+1)];
+end
+X = [0 X];
+Y = X;
 
-b=[];
-    for l = 1 : Ny
-        for k = 1 : Nx
-            b = [b; feval(rhs, k./(Nx+1), l./(Ny+1))];
-        end
+b = [];
+for l = 1 : Ny
+    for k = 1 : Nx
+        b = [b; feval(rhs, k./(Nx+1), l./(Ny+1))];
     end
+end
 
-mat10 = gaussSeidelIter(b, Nx, Ny);
+[mat10, mat20, mat30] = gaussSeidelIter(b, Nx, Ny);
 
 exactMatrix = zeros(Nx+2, Ny+2);
-
 for i = 1 : Nx+2
     for j = 1 : Ny+2
         exactMatrix(i,j) = feval(exact, (i-1)./(Nx+1), (j-1)./(Ny+1)).^2;
     end
 end
 
-errMat = mat10-exactMatrix;
-
-surf(X,Y, errMat)
-
-%%%%%%%%
+subplot(1,3,1), surf(X,Y, mat10-exactMatrix)
+subplot(1,3,2), surf(X,Y, mat20-exactMatrix)
+subplot(1,3,3), surf(X,Y, mat30-exactMatrix)
