@@ -10,8 +10,6 @@ function [mat10, mat20, mat30] = gaussSeidelIter(b, Nx, Ny)
     central = -2/hx^2 - 2/hy^2;
 
     iterations = 0;
-  
-    mat = zeros(1,Nx + 2) ;
 
     while iterations < 31
 
@@ -92,11 +90,11 @@ function [mat10, mat20, mat30] = gaussSeidelIter(b, Nx, Ny)
 
         
         if (iterations == 10)
-            mat10 = matrixTransform(mat, Ts, Nx, Ny);
+            mat10 = matrixTransform(Ts, Nx, Ny);
         elseif(iterations == 20)
-            mat20 = matrixTransform(mat, Ts, Nx, Ny);
+            mat20 = matrixTransform(Ts, Nx, Ny);
         elseif(iterations == 30)
-            mat30 = matrixTransform(mat, Ts, Nx, Ny);    
+            mat30 = matrixTransform(Ts, Nx, Ny);    
         end
         
     end

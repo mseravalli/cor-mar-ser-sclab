@@ -1,30 +1,33 @@
 function res = residual(Ts, b, Nx, Ny)
-% res = residual(Ts, b, Nx, Ny) calculates the residual norm
+% res = residual(Ts, b, Nx, Ny) 
 
-    hx = 1./(Nx+1);
-    hy = 1./(Ny+1);
-    outsum=0;
+    res=zeros(Nx*Ny,1);
+    hx = 1./(1+Nx);
+    hy = 1./(1+Ny);
 
-    for k = 1 : length(Ts)
+    external = 1/hx^2; 
+    internal = 1/hy^2; 
+    central = -2/hx^2 - 2/hy^2;
+
+    for k = 1 : Nx*Ny
         insum = 0;
-
+        
         if(k-Ny > 0)
-            insum = insum + coefficient(k,k-Ny,Nx,Ny).*Ts(k-Ny);
+           insum = insum + external.*Ts(k-Ny);
         end
-        if(k-1 > 0)
-            insum = insum + coefficient(k,k-1,Nx,Ny).*Ts(k-1);
+        if(k-1 > 0 && mod(k-1, Nx)~=0)
+           insum = insum + internal.*Ts(k-1);
         end
-        insum = insum + coefficient(k,k,Nx,Ny).*Ts(k);
-        if(k+1 <= Ny.*Nx)
-            insum = insum + coefficient(k,k+1,Nx,Ny).*Ts(k+1);
+        insum = insum + central.*Ts(k);
+        if(k+1 <= Ny.*Nx && mod(k, Nx)~=0)
+           insum = insum + internal.*Ts(k+1);
         end
         if(k+Ny <= Ny.*Nx)
-            insum = insum + coefficient(k,k+Ny,Nx,Ny).*Ts(k+Ny);
+           insum = insum + external.*Ts(k+Ny);
         end
-        
-        outsum = outsum+(b(k) - insum).^2;
+
+        res(k) = (b(k) - insum);
+
     end
-
-    res = sqrt(outsum./length(Ts));
-
+ 
 end

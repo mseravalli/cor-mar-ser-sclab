@@ -1,5 +1,6 @@
 % example of usage 
 
+
 format long;
 
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));
@@ -8,7 +9,7 @@ exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
 resultTableGS = [];
 resultTableSOR = [];
 
-for n = 2 : 5
+for n = 6 : 6
 
     Nx = (2^n) - 1;
     Ny = (2^n) - 1;
@@ -22,28 +23,31 @@ for n = 2 : 5
     end
 
     %solved using Gauss - Seidel
-    [matGS, storageGS, iterationsGS, timeGS] = gaussSeidel(b, Nx, Ny);
+    %[matGS, storageGS, iterationsGS, timeGS] = gaussSeidel(b, Nx, Ny);
 
     %solved using SOR
-    [matSOR, storageSOR, iterationsSOR, timeSOR] = SOR(b, Nx, Ny);
+    %[matSOR, storageSOR, iterationsSOR, timeSOR] = SOR(b, Nx, Ny);
+    
+    %solved using MultiGrid
+    [matMG, storageMG, iterationsMG, timeMG] = multigrid2D(ones(Nx*Ny, 1), b, Nx, Ny);
 
-    factorGS = NaN;
-    factorSOR = NaN;
+    %factorGS = NaN;
+    %factorSOR = NaN;
 
-    if(n > 2)
-        factorGS = iterationsGS / resultTableGS(1,end);
-        factorSOR = iterationsSOR / resultTableSOR(1,end);
-    end
+    %if(n > 2)
+    %    factorGS = iterationsGS / resultTableGS(1,end);
+    %    factorSOR = iterationsSOR / resultTableSOR(1,end);
+    %end
 
-    resultTableGS = [resultTableGS  [iterationsGS; factorGS; timeGS; storageGS]];
-    resultTableSOR = [resultTableSOR  [iterationsSOR; factorSOR; timeSOR; storageSOR]];
+    %resultTableGS = [resultTableGS  [iterationsGS; factorGS; timeGS; storageGS]];
+    %resultTableSOR = [resultTableSOR  [iterationsSOR; factorSOR; timeSOR; storageSOR]];
 
 end
 
-disp(resultTableGS)
-disp(resultTableSOR)
+%disp(resultTableGS)
+%disp(resultTableSOR)
 
-display = false;
+display = true;
 
 if display 
 
@@ -56,10 +60,10 @@ if display
 
     clf;
 
-    subplot(1,2,1), surf(X,Y,mat)
+    subplot(1,2,1), surf(X,Y,matrixTransform(matMG, Nx, Ny))
     title('Gauss-Seidel');
 
-    subplot(1,2,2), contour(X,Y,mat)
+    subplot(1,2,2), contour(X,Y,matMG)
 
 end
 
