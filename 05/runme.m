@@ -64,6 +64,7 @@ if display
 end
 
 %ploting errors
+
 Nx = 255;
 Ny = 255;
 
@@ -74,22 +75,19 @@ end
 X = [0 X];
 Y = X;
 
-b = [];
-for l = 1 : Ny
-    for k = 1 : Nx
-        b = [b; feval(rhs, k./(Nx+1), l./(Ny+1))];
-    end
-end
+matX = repmat(linspace(1/(Nx+1), 1-1/(Nx+1), Nx)', 1, Nx);
+matY = repmat(linspace(1/(Nx+1), 1-1/(Nx+1), Ny)', 1, Ny);
+b = feval(rhs, matX, matY);
 
 [mat10, mat20, mat30] = gaussSeidelIter(b, Nx, Ny);
 
-exactMatrix = zeros(Nx+2, Ny+2);
-for i = 1 : Nx+2
-    for j = 1 : Ny+2
-        exactMatrix(i,j) = feval(exact, (i-1)./(Nx+1), (j-1)./(Ny+1)).^2;
-    end
-end
+matX = repmat(linspace(0, 1, Nx+2), Nx+2, 1);
+matY = repmat(linspace(0, 1, Ny+2)', 1, Ny+2);
+exactMatrix = feval(exact, matX, matY);
 
 subplot(1,3,1), surf(X,Y, mat10-exactMatrix)
+title('10 iterations')
 subplot(1,3,2), surf(X,Y, mat20-exactMatrix)
+title('20 iterations')
 subplot(1,3,3), surf(X,Y, mat30-exactMatrix)
+title('30 iterations')
