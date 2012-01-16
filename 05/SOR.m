@@ -102,13 +102,15 @@ function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
          
     end
 
-    for j = 1 : Ny
+     for j = 1 : Ny
+ 
+         mat = [mat ; [0, (Ts(1+(j-1).*Nx:j.*Nx))' , 0]];
+ 
+     end
+ 
+     mat = [ mat ; zeros(1,Nx + 2)];
 
-        mat = [mat ; [0, (Ts(1+(j-1).*Nx:j.*Nx))' , 0]];
-
-    end
-
-    mat = [ mat ; zeros(1,Nx + 2)];
+%    mat = matrixTransform(mat, Nx, Ny);
 
     storage = numel(Ts)+numel(b)+numel(mat);
 

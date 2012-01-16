@@ -19,15 +19,17 @@ function res = residual(Ts, b, Nx, Ny)
            insum = insum + internal.*Ts(k-1);
         end
         insum = insum + central.*Ts(k);
-        if(k+1 <= Ny*Nx && mod(k, Nx)~=0)
+        if(k+1 <= Ny.*Nx && mod(k, Nx)~=0)
            insum = insum + internal.*Ts(k+1);
         end
-        if(k+Ny <= Ny*Nx)
+        if(k+Ny <= Ny.*Nx)
            insum = insum + external.*Ts(k+Ny);
         end
 
         res(k) = (b(k) - insum);
 
     end
+    
+    
  
 end

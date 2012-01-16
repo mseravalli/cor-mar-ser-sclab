@@ -63,7 +63,7 @@ function TsInt = interpolation(TsCoarse, Nx, Ny)
             if(j == NyCoarse)
                 TsInt(offset + 2*j + Ny + 1) = TsInt(offset + Ny + 2*j) / 2;
             end
-            %point in lower-left corner
+
             if(j == NyCoarse && i == 1)
                 TsInt(offset + 2*j - Ny + 1) = TsInt(offset - Ny + 2*j) / 2;
             end

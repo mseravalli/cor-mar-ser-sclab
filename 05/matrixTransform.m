@@ -1,14 +1,14 @@
 function transformedMat = matrixTransform(Ts, Nx, Ny)
 %transformedMat = matrixTransform(mat, Ts, Nx, Ny) transforms vector Ts to matrix Nx*sNy
     
-    mat = zeros(1,Nx + 2);
+    mat = zeros(Ny + 2, 1);
 
-    for j = 1 : Ny
+    for i = 1 : Nx
 
-        mat = [mat ; [0, (Ts(1+(j-1).*Nx:j.*Nx))' , 0]];
+        mat = [mat, [0; (Ts(1+(i-1).*Nx:i.*Nx)); 0]];
 
     end
 
-    transformedMat = [ mat ; zeros(1,Nx + 2)];
+    transformedMat = [ mat , zeros(Nx + 2, 1)];
     
 end

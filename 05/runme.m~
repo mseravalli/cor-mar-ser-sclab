@@ -9,7 +9,7 @@ exact = @(x,y)(sin(pi.*x).*sin(pi.*y));
 resultTableGS = [];
 resultTableSOR = [];
 
-for n = 7 : 7
+for n = 6 : 6
 
     Nx = (2^n) - 1;
     Ny = (2^n) - 1;
@@ -31,8 +31,6 @@ for n = 7 : 7
     %solved using MultiGrid
     [matMG, storageMG, iterationsMG, timeMG] = multigrid2D(ones(Nx*Ny, 1), b, Nx, Ny);
 
-    [matMG, storageMG, iterationsMG, timeMG] = multigrid2DSolver(matMG, b, Nx, Ny);
-    
     %factorGS = NaN;
     %factorSOR = NaN;
 
@@ -64,8 +62,8 @@ if display
 
     %subplot(1,2,1), surf(X,Y,matrixTransform(matMG, Nx, Ny))
     %title('Gauss-Seidel');
-    subplot(1,2,1), surf(X,Y,matMG)
-    subplot(1,2,2), surf(X,Y,matSOR)
+    subplot(1,2,1), surf(X,Y,matrixTransform(matMG, Nx, Ny))
+    subplot(1,2,1), surf(X,Y,matrixTransform(matMG, Nx, Ny))
     %subplot(1,2,2), contour(X,Y,matMG)
 
 end
