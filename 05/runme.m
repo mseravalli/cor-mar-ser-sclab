@@ -10,7 +10,7 @@ resultTableGS = [];
 resultTableSOR = [];
 resultTableMG = [];
 
-for n = 2 : 5
+for n = 2 : 8 
 
     Nx = (2^n) - 1;
     Ny = (2^n) - 1;

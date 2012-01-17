@@ -1,4 +1,5 @@
-function [Ts, storage, iterations, time] = multigrid2D(Ts, b, Nx, Ny)
+function [Ts, storage, iterations, time, r] = multigrid2D(Ts, b, Nx, Ny)
+%multigrid2D performs one iteration of a multigrid solver
 
     storage = 0;
     iterations = 0;
@@ -28,7 +29,8 @@ function [Ts, storage, iterations, time] = multigrid2D(Ts, b, Nx, Ny)
 
     Ts = gaussSeidelSmoother(Ts, b, Nx, Ny, 2);
 
-    storage = storage + numel(Ts) + numel(b) + numel(res) + numel(bCoarse);
+    r = sqrt(sum(residual(Ts, b, Nx, Ny).^2));
 
+    storage = storage + numel(Ts) + numel(b) + numel(res) + numel(bCoarse);
 
 end

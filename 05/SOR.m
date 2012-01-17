@@ -1,7 +1,7 @@
 function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
 % mat = gaussSeidel(b, Nx, Ny) solves system A*x = b using Gauss Seidel method and without storing system matrix
 
-    Ts=zeros(Nx*Ny,1);
+    Ts=ones(Nx*Ny,1);
     hx = 1./(1+Nx);
     hy = 1./(1+Ny);
 
