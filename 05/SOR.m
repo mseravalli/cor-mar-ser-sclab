@@ -82,17 +82,17 @@ function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
             insum = 0;
 
             if(k-Ny > 0)
-                insum = insum + coefficient(external, k,k-Ny,Nx,Ny).*Ts(k-Ny);
+                insum = insum + external.*Ts(k-Ny);
             end
-            if(k-1 > 0)
-                insum = insum + coefficient(internal, k,k-1,Nx,Ny).*Ts(k-1);
+            if(k-1 > 0 && mod(k-1, Nx)~=0)
+                insum = insum + internal.*Ts(k-1);
             end
-            insum = insum + coefficient(central, k,k,Nx,Ny).*Ts(k);
-            if(k+1 <= Ny.*Nx)
-                insum = insum + coefficient(internal, k,k+1,Nx,Ny).*Ts(k+1);
+            insum = insum + central.*Ts(k);
+            if(k+1 <= Ny.*Nx && mod(k, Nx)~=0)
+                insum = insum + internal.*Ts(k+1);
             end
             if(k+Ny <= Ny.*Nx)
-                insum = insum + coefficient(external, k,k+Ny,Nx,Ny).*Ts(k+Ny);
+                insum = insum + external.*Ts(k+Ny);
             end
             
             outsum = outsum+(b(k) - insum).^2;
