@@ -4,6 +4,9 @@ function [Ts, storage, iterations, time] = multigrid2D(Ts, b, Nx, Ny)
     iterations = 0;
     time = 0;
 
+    res = [];
+    bCoarse = [];
+
     Ts = gaussSeidelSmoother(Ts, b, Nx, Ny, 2);
     %forDeBug = matrixTransform(Ts, Nx, Ny);
 
@@ -17,12 +20,15 @@ function [Ts, storage, iterations, time] = multigrid2D(Ts, b, Nx, Ny)
 
         bCoarse = restriction(res, Nx, Ny);
 
-        [TsCoarse, s, i, t] = multigrid2D(zeros(NxCoarse*NyCoarse,1), bCoarse, NxCoarse, NyCoarse);
+        [TsCoarse, storage, i, t] = multigrid2D(zeros(NxCoarse*NyCoarse,1), bCoarse, NxCoarse, NyCoarse);
 
         Ts = Ts + interpolation(TsCoarse, Nx, Ny);
         
     end
 
     Ts = gaussSeidelSmoother(Ts, b, Nx, Ny, 2);
-    %smoothed = matrixTransform(Ts, Nx, Ny);
+
+    storage = storage + numel(Ts) + numel(b) + numel(res) + numel(bCoarse);
+
+
 end

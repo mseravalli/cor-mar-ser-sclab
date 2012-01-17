@@ -11,7 +11,7 @@ function [mat, storage, iterations, time] = multigrid2DSolver (b, Nx, Ny)
     
     while res > 10^(-4)
         
-        mat = multigrid2D(mat, b, Nx, Ny);
+        [mat, storage, iterations, time] = multigrid2D(mat, b, Nx, Ny);
         res = sqrt(sum(residual(mat, b, Nx, Ny).^2));
         iterations = iterations + 1;
     end
