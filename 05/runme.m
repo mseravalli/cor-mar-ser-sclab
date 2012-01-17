@@ -29,9 +29,8 @@ for n = 7 : 7
     [matSOR, storageSOR, iterationsSOR, timeSOR] = SOR(b, Nx, Ny);
     
     %solved using MultiGrid
-    [matMG, storageMG, iterationsMG, timeMG] = multigrid2D(ones(Nx*Ny, 1), b, Nx, Ny);
-
-    [matMG, storageMG, iterationsMG, timeMG] = multigrid2DSolver(matMG, b, Nx, Ny);
+    %[matMG, storageMG, iterationsMG, timeMG] = multigrid2D(ones(Nx*Ny, 1), b, Nx, Ny);
+    [matMG, storageMG, iterationsMG, timeMG] = multigrid2DSolver(b, Nx, Ny);
     
     %factorGS = NaN;
     %factorSOR = NaN;

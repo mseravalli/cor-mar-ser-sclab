@@ -1,4 +1,6 @@
-function [mat, storage, iterations, time] = multigrid2DSolver (mat, b, Nx, Ny)
+function [mat, storage, iterations, time] = multigrid2DSolver (b, Nx, Ny)
+
+    mat = ones(Nx * Ny, 1);
 
     res = 1;
     
