@@ -1,6 +1,3 @@
-% example of usage 
-
-
 format long;
 
 rhs = @(x,y)(-2.*pi.*pi.*sin(pi.*x).*sin(pi.*y));

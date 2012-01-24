@@ -1,5 +1,5 @@
 function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
-% mat = gaussSeidel(b, Nx, Ny) solves system A*x = b using Gauss Seidel method and without storing system matrix
+%[ mat, storage, iterations, time ] = SOR(b, Nx, Ny) solves system A*x = b using Gauss-Seidel with relaxation without storing system matrix
 
     Ts=ones(Nx*Ny,1);
     hx = 1./(1+Nx);
@@ -10,8 +10,6 @@ function [mat, storage, iterations, time] = SOR(b, Nx, Ny)
     external = 1/hx^2; 
     internal = 1/hy^2; 
     central = (-2/hx^2 - 2/hy^2);
-
-   % b = omega .* b;
 
     iterations = 0;
   

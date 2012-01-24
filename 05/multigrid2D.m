@@ -9,10 +9,8 @@ function [Ts, storage, iterations, time, r] = multigrid2D(Ts, b, Nx, Ny)
     bCoarse = [];
 
     Ts = gaussSeidelSmoother(Ts, b, Nx, Ny, 2);
-    %forDeBug = matrixTransform(Ts, Nx, Ny);
 
-    %think about a good condition
-    if(Nx >= 3)
+    if(Nx >= 3 && Ny >= 3)
 
         NxCoarse = (Nx+1)/2 - 1;
         NyCoarse = (Ny+1)/2 - 1;
